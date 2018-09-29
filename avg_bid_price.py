@@ -21,7 +21,7 @@ if __name__ == "__main__":
         .flatMap(lambda line: get_indv_keyword_price(line))\
         .map(lambda w: (w[0],[1, w[1]]))\
         .reduceByKey(lambda v1, v2: (v1[0] + v2[0], v1[1] + v2[1]))\
-        .mapValues(lambda k: k[0]/k[1])\
+        .mapValues(lambda k: k[1]/k[0])\
         .sortBy(lambda a: a[1], False)
 
     data.saveAsTextFile("avg_bid_price_output")
